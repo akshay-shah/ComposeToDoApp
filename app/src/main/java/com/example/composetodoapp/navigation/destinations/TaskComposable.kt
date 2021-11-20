@@ -1,4 +1,4 @@
-package com.example.composetodoapp.ui.navigation.destinations
+package com.example.composetodoapp.navigation.destinations
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType

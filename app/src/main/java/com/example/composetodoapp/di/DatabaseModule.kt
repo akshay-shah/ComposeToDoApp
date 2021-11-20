@@ -2,9 +2,8 @@ package com.example.composetodoapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.composetodoapp.data.database.ToDoDatabase
+import com.example.composetodoapp.data.ToDoDatabase
 import com.example.composetodoapp.utils.Constants.DATABASE_NAME
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +22,7 @@ object DatabaseModule {
             context,
             ToDoDatabase::class.java,
             DATABASE_NAME
-        )
+        ).build()
 
     @Singleton
     @Provides

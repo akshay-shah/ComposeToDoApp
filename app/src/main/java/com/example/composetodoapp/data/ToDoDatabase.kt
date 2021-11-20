@@ -1,4 +1,4 @@
-package com.example.composetodoapp.data.database
+package com.example.composetodoapp.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
