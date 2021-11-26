@@ -30,7 +30,7 @@ fun PriorityItem(priority: Priority) {
         Text(
             modifier = Modifier
                 .align(Alignment.CenterVertically),
-            style = Typography.subtitle1,
+            style = Typography.subtitle2,
             text = priority.name
         )
         Spacer(modifier = Modifier.width(10.dp))
