@@ -1,11 +1,15 @@
 package com.example.composetodoapp.ui.screens.tasks
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.ui.viewmodel.SharedViewModel
 import com.example.composetodoapp.utils.Action
+import com.example.composetodoapp.utils.Action.NO_ACTION
 
 @Composable
 fun TaskScreen(
@@ -18,11 +22,23 @@ fun TaskScreen(
     val description by sharedViewModel.description
     val priority by sharedViewModel.priority
 
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             TaskAppBar(
                 selectedTask = selectedTask,
-                navigateToListScreen = navigateToListScreen
+                navigateToListScreen = { action ->
+                    if (action == NO_ACTION) {
+                        navigateToListScreen(action)
+                    } else {
+                        if (sharedViewModel.validateFields()) {
+                            navigateToListScreen(action)
+                        } else {
+                            displayToast(context = context)
+                        }
+                    }
+                }
             )
         },
         content = {
@@ -36,4 +52,12 @@ fun TaskScreen(
             )
         }
     )
+}
+
+fun displayToast(context: Context) {
+    Toast.makeText(
+        context,
+        "Fields Empty",
+        Toast.LENGTH_SHORT
+    ).show()
 }

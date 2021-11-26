@@ -1,5 +1,7 @@
 package com.example.composetodoapp.utils
 
+import com.example.composetodoapp.utils.Action.NO_ACTION
+
 enum class Action {
     ADD,
     UPDATE,
@@ -7,4 +9,15 @@ enum class Action {
     DELETE_ALL,
     UNDO,
     NO_ACTION
+}
+
+fun String?.toAction(): Action {
+    return when (this) {
+        "ADD" -> Action.ADD
+        "UPDATE" -> Action.UPDATE
+        "DELETE" -> Action.DELETE
+        "DELETE_ALL" -> Action.DELETE_ALL
+        "UNDO" -> Action.UNDO
+        else -> NO_ACTION
+    }
 }

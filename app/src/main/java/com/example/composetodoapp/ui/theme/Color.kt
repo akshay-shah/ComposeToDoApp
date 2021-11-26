@@ -14,7 +14,7 @@ val MediumGray = Color.Gray
 val DarkGray = Color.DarkGray
 
 val HighPriorityColor = Color.Red
-val LowPriorityColor = Color.Green
+val LowPriorityColor = Color.Blue
 val MediumPriorityColor = Color.Yellow
 val NonePriorityColor = Color.Gray
 

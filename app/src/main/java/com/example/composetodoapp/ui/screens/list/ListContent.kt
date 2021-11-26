@@ -27,17 +27,41 @@ import com.example.composetodoapp.ui.theme.Typography
 import com.example.composetodoapp.ui.theme.taskContentColor
 import com.example.composetodoapp.ui.theme.taskItemColor
 import com.example.composetodoapp.utils.RequestState
+import com.example.composetodoapp.utils.SearchAppBarState
+import com.example.composetodoapp.utils.SearchAppBarState.TRIGGERED
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
     allTasks: RequestState<List<ToDoTask>>,
+    searchTasks: RequestState<List<ToDoTask>>,
+    searchAppBarState: SearchAppBarState,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (allTasks is RequestState.Success) {
-        if (allTasks.data.isNotEmpty()) {
+    if (searchAppBarState == TRIGGERED) {
+        HandleListContent(
+            tasks = searchTasks,
+            navigateToTaskScreen = navigateToTaskScreen
+        )
+    } else {
+        HandleListContent(
+            tasks = allTasks,
+            navigateToTaskScreen = navigateToTaskScreen
+        )
+    }
+
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun HandleListContent(
+    tasks: RequestState<List<ToDoTask>>,
+    navigateToTaskScreen: (taskId: Int) -> Unit
+) {
+    if (tasks is RequestState.Success) {
+        if (tasks.data.isNotEmpty()) {
             DisplayTasks(
-                allTasks = allTasks.data,
+                allTasks = tasks.data,
                 navigateToTaskScreen = navigateToTaskScreen
             )
         } else {
