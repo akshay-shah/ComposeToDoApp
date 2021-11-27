@@ -60,6 +60,11 @@ class SharedViewModel @Inject constructor(
     private val _sortState = MutableStateFlow<RequestState<Priority>>(RequestState.Idle)
     val sortState: StateFlow<RequestState<Priority>> = _sortState
 
+    init {
+        getAllTasks()
+        readSortState()
+    }
+
     val lowPriorityTasks: StateFlow<List<ToDoTask>> = repository.filterByLowPriority().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
@@ -75,36 +80,6 @@ class SharedViewModel @Inject constructor(
     fun setSortState(priority: Priority) {
         viewModelScope.launch {
             dataStoreRepository.persistSortState(priority = priority)
-        }
-    }
-
-    fun readSortState() {
-        _sortState.value = RequestState.Loading
-        try {
-            viewModelScope.launch {
-                dataStoreRepository.readSortState
-                    .map { Priority.valueOf(it) }
-                    .collect {
-                        _sortState.value = RequestState.Success(it)
-                        _sortState
-                    }
-            }
-        } catch (e: Exception) {
-            _sortState.value = RequestState.Error(e)
-        }
-    }
-
-    fun getAllTasks() {
-        _allTasks.value = RequestState.Loading
-        try {
-            viewModelScope.launch {
-                repository.getAllTasks().collect {
-                    _allTasks.value = RequestState.Success(it)
-                }
-
-            }
-        } catch (e: Exception) {
-            _allTasks.value = RequestState.Error(e)
         }
     }
 
@@ -127,6 +102,36 @@ class SharedViewModel @Inject constructor(
             title.value = ""
             description.value = ""
             priority.value = LOW
+        }
+    }
+
+    private fun readSortState() {
+        _sortState.value = RequestState.Loading
+        try {
+            viewModelScope.launch {
+                dataStoreRepository.readSortState
+                    .map { Priority.valueOf(it) }
+                    .collect {
+                        _sortState.value = RequestState.Success(it)
+                        _sortState
+                    }
+            }
+        } catch (e: Exception) {
+            _sortState.value = RequestState.Error(e)
+        }
+    }
+
+    private fun getAllTasks() {
+        _allTasks.value = RequestState.Loading
+        try {
+            viewModelScope.launch {
+                repository.getAllTasks().collect {
+                    _allTasks.value = RequestState.Success(it)
+                }
+
+            }
+        } catch (e: Exception) {
+            _allTasks.value = RequestState.Error(e)
         }
     }
 
