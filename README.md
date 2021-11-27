@@ -21,6 +21,8 @@ Jetpack Compose App
 - **Update** tasks
 - **Delete** all tasks.
 - **Search** tasks in complete database
+- **Undo** deleted task
+- **Swipe to delete** task
 
 # Screenshots
 
