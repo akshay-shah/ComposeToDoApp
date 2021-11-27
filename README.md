@@ -24,8 +24,17 @@ Jetpack Compose App
 
 # Screenshots
 
-![Splash Screen](assets/1.png)![Home Screen](assets/2.png)![Add Task Screen](assets/3.png)
+**Light Mode** \
+![Splash Screen](assets/1.png)![Home Screen](assets/2.png)![Add Task Screen](assets/3.png) \
 ![Priority Drop Down](assets/4.png)![Search Screen](assets/5.png)![Delete All Dialog](assets/6.png)
+\
+
+**Dark Mode** \
+![Splash Screen](assets/N1.png)![Home Screen](assets/N2.png)![Add Task Screen](assets/N3.png) \
+![Priority Drop Down](assets/N4.png)![Search Screen](assets/N5.png)![Delete All Dialog](assets/N6.png)
+\
+
+
 
 
 
