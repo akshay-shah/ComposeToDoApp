@@ -33,8 +33,8 @@ import com.example.composetodoapp.data.models.Priority.HIGH
 import com.example.composetodoapp.data.models.Priority.LOW
 import com.example.composetodoapp.data.models.Priority.MEDIUM
 import com.example.composetodoapp.ui.theme.Typography
-import com.example.composetodoapp.ui.theme.taskContentColor
-import com.example.composetodoapp.ui.theme.taskItemColor
+import com.example.composetodoapp.ui.theme.taskItemBackgroundColor
+import com.example.composetodoapp.ui.theme.taskItemTextColor
 
 @Composable
 fun PriorityDropDown(
@@ -51,7 +51,7 @@ fun PriorityDropDown(
             .fillMaxWidth()
             .height(60.dp)
             .clickable { expanded = true }
-            .background(color = MaterialTheme.colors.taskItemColor)
+            .background(color = MaterialTheme.colors.taskItemBackgroundColor)
             .border(
                 1.dp,
                 color = Color.Gray,
@@ -68,7 +68,7 @@ fun PriorityDropDown(
         }
         Text(
             text = priority.name,
-            color = MaterialTheme.colors.taskContentColor,
+            color = MaterialTheme.colors.taskItemTextColor,
             modifier = Modifier.weight(8f),
             style = Typography.subtitle1
         )

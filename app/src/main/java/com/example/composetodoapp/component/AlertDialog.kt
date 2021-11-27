@@ -2,6 +2,7 @@ package com.example.composetodoapp.component
 
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
@@ -31,7 +32,9 @@ fun AlertDialogComponent(
                 }
             },
             dismissButton = {
-                Button(onClick = { closeDialog() }) {
+                OutlinedButton(onClick = {
+                    closeDialog()
+                }) {
                     Text(text = "No")
                 }
             }
